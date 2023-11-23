@@ -1,0 +1,30 @@
+services:
+  postgres:
+
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=personal_project
+      - POSTGRES_USER=Davidfcg20
+      - POSTGRES_PASSWORD=375NegroDF
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=davidfcg20@mail.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - "5050:80"
+    volumes:
+      - ./config/servers.json:/pgadmin4/servers.json
+      - pgadmin-data:/var/lib/pgadmin
+
+volumes:
+  postgres_data:
+    name: 'postgres_data'
+  pgadmin-data:
+    name: 'pgadmin-data'
