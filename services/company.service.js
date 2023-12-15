@@ -1,5 +1,5 @@
 const Boom = require('@hapi/boom');
-const {sequelize} = require('../libs/sequelize');
+const { sequelize } = require('../libs/sequelize');
 
 class CompanyService {
 
@@ -23,7 +23,8 @@ class CompanyService {
 
   async findAll(){
     try {
-      const [rta] = await sequelize.query('SELECT * FROM prueba');
+      //const [rta] = await sequelize.query('SELECT * FROM prueba');
+      const rta = await sequelize.models.Company.findAll();
       return rta;
     } catch (error) {
       throw Boom.notFound(`error found: ${error}`);
