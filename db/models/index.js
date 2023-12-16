@@ -1,7 +1,7 @@
 const { CompanySchema, Companies } = require('./../models/company.model');
 const { ProfileSchema, Profiles } = require('./../models/profile.model');
 const { LocationSchema, Locations } = require('./../models/location.model');
-const { RatingSchema, Ratings } = require('./../models/rating');
+const { RatingSchema, Ratings } = require('./rating.model');
 const { StatusSchema, Statuses } = require('./../models/status.model');
 const { CommentarySchema, Commentaries } = require('./../models/commentary.model');
 
