@@ -13,7 +13,7 @@ services:
 
   pgadmin:
 
-    image: dpage/pgadmin4
+    image: dpage/pgadmin4:latest
     environment:
       - PGADMIN_DEFAULT_EMAIL=davidfcg20@mail.com
       - PGADMIN_DEFAULT_PASSWORD=root

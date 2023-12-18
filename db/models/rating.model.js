@@ -25,7 +25,7 @@ const RatingSchema = {
 };
 
 class Ratings extends Model {
-  static associations(){
+  static associate(){
 
   }
   static config(sequelize){

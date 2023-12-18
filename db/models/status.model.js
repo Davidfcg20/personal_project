@@ -19,7 +19,7 @@ const StatusSchema = {
 };
 
 class Statuses extends Model {
-  static associations(){
+  static associate(){
 
   }
   static config(sequelize){

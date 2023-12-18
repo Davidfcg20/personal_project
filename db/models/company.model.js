@@ -19,7 +19,7 @@ const CompanySchema = {
 };
 
 class Companies extends Model {
-  static associations(){
+  static associate(){
 
   }
   static config(sequelize){

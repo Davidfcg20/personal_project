@@ -1,12 +1,21 @@
 const Joi = require('joi');
 
+const companyId = Joi.number().integer();
 const companyName = Joi.string();
-const companyProfileId = Joi.string();
+const profileId = Joi.string();
 
 const createCompanySchema = Joi.object({
   companyName: companyName.required(),
-  companyProfileId: companyProfileId.required()
+  profileId: profileId.required()
 });
 
-module.exports = { createCompanySchema };
+const getCompanySchema = Joi.object({
+  companyId: companyId.required()
+});
+
+const updateCompanySchema = Joi.object({
+  companyName: companyName.required(),
+});
+
+module.exports = { createCompanySchema, getCompanySchema, updateCompanySchema };
 

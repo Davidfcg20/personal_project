@@ -17,7 +17,7 @@ const ProfileSchema = {
 };
 
 class Profiles extends Model {
-  static associations(){
+  static associate(){
 
   }
   static config(sequelize){

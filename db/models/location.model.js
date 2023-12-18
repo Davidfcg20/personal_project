@@ -28,7 +28,7 @@ const LocationSchema = {
 };
 
 class Locations extends Model {
-  static associations(){
+  static associate(){
 
   }
   static config(sequelize){
