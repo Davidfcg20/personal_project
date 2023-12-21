@@ -45,6 +45,10 @@ class Locations extends Model {
       as: 'company',
       foreignKey: 'companyId'
     });
+    this.hasOne(models.Visit, {
+      as: 'visit',
+      foreignKey: 'locationId'
+    });
   }
   static config(sequelize){
     return{

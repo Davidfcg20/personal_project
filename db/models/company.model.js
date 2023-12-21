@@ -37,7 +37,6 @@ class Companies extends Model {
       as: 'profile',
       foreignKey: 'profileId'
     });
-
     this.hasMany(models.Location, {
       as: 'location',
       foreignKey: 'companyId'

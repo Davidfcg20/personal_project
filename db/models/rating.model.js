@@ -25,8 +25,11 @@ const RatingSchema = {
 };
 
 class Ratings extends Model {
-  static associate(){
-
+  static associate(models){
+    this.hasMany(models.Visit, {
+      as: 'visit',
+      foreignKey: 'ratingId'
+    });
   }
   static config(sequelize){
     return{

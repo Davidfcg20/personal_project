@@ -12,13 +12,13 @@ class LocationService {
   }
 
   async findOne(locationId){
-    const company = await sequelize.models.Location.findByPk(locationId, {
-      include: ['company']
+    const location = await sequelize.models.Location.findByPk(locationId, {
+      include: ['company', 'visit']
     });
-    if(!company){
+    if(!location){
       throw Boom.notFound('location not found');
     } else {
-      return company;
+      return location;
     }
   }
 

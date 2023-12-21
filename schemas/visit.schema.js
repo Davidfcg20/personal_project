@@ -1,17 +1,27 @@
 const Joi = require('joi');
 
+const { locationId } = require('./location.schema');
+//const {  } = require('./rating.schema');
+//const {  } = require('./status.schema');
+//const {  } = require('./commentary.schema');
+
 const visitId = Joi.number().integer();
-const visitIdLocation = Joi.number().integer();
-const visitIdRating = Joi.number().integer().positive();
-const visitIdStatus = Joi.number().integer();
-const visitIdCommentary = Joi.number().integer();
+const visitGeneralOpinion = Joi.string();
+const ratingId = Joi.number().integer().positive();
+const statusId = Joi.number().integer();
+const commentaryId = Joi.number().integer();
 
 const createVisitSchema = Joi.object({
-  visitId: visitId.required(),
-  visitIdLocation: visitIdLocation.required(),
-  visitIdRating: visitIdRating.required(),
-  visitIdStatus: visitIdStatus.required(),
-  visitIdCommentary: visitIdCommentary.required()
+  //visitId: visitId.required(),
+  visitGeneralOpinion: visitGeneralOpinion.required(),
+  locationId: locationId.required(),
+  commentaryId: commentaryId.required(),
+  ratingId: ratingId.required(),
+  statusId: statusId.required()
 });
 
-module.exports = { createVisitSchema };
+const getVisitSchema = Joi.object({
+  visitId: visitId.required()
+});
+
+module.exports = { visitId, createVisitSchema, getVisitSchema };

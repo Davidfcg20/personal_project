@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 'use strict';
 
-const { LOCATION_TABLE, LocationSchema } = require('./../models/location.model');
+const { VISIT_TABLE, VisitSchema } = require('./../models/visits.model');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -11,7 +11,7 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.addColumn(LOCATION_TABLE, 'company_id', LocationSchema.companyId);
+    await queryInterface.createTable(VISIT_TABLE, VisitSchema);
   },
 
   async down (queryInterface, Sequelize) {
@@ -21,6 +21,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.removeColumn(LOCATION_TABLE, 'company_id');
+    await queryInterface.dropTable(VISIT_TABLE);
   }
 };

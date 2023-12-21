@@ -28,8 +28,11 @@ const CommentarySchema = {
 };
 
 class Commentaries extends Model {
-  static associate(){
-
+  static associate(models){
+    this.hasOne(models.Visit, {
+      as: 'visit',
+      foreignKey: 'commentaryId'
+    });
   }
   static config(sequelize){
     return{
