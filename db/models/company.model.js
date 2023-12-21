@@ -1,4 +1,5 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
+const {PROFILE_TABLE} = require('./profile.model');
 
 const COMPANY_TABLE = 'companies';
 
@@ -16,11 +17,31 @@ const CompanySchema = {
     unique: true,
     field: 'company_name'
   },
+  profileId: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    references: {
+      model: PROFILE_TABLE,
+      key: 'profile_id'
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL',
+    unique: true,
+    field: 'profile_id'
+  }
 };
 
 class Companies extends Model {
-  static associate(){
+  static associate(models){
+    this.belongsTo(models.Profile, {
+      as: 'profile',
+      foreignKey: 'profileId'
+    });
 
+    this.hasMany(models.Location, {
+      as: 'location',
+      foreignKey: 'companyId'
+    });
   }
   static config(sequelize){
     return{

@@ -1,3 +1,5 @@
+const { sequelize } = require('../libs/sequelize');
+
 class ConsumptionService {
 
   constructor(){

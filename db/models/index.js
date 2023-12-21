@@ -12,6 +12,10 @@ function setupModels(sequelize){
   Ratings.init(RatingSchema, Ratings.config(sequelize));
   Statuses.init(StatusSchema, Statuses.config(sequelize));
   Commentaries.init(CommentarySchema, Commentaries.config(sequelize));
+
+  //Associates
+  Companies.associate(sequelize.models);
+  Locations.associate(sequelize.models);
 }
 
 module.exports = { setupModels };
