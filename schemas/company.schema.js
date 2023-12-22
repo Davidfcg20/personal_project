@@ -6,6 +6,7 @@ const companyId = Joi.number().integer();
 const companyName = Joi.string();
 
 const createCompanySchema = Joi.object({
+  companyId: companyId.allow(null),
   companyName: companyName.required(),
   profile: createProfileSchema.allow(null)
 });

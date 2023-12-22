@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const { companyId } = require('./company.schema');
+const { companyId, createCompanySchema } = require('./company.schema');
 
 const locationId = Joi.number().integer();
 const locationCountry = Joi.string();
@@ -11,7 +11,7 @@ const createLocationSchema = Joi.object({
   locationCountry: locationCountry.required(),
   locationCity: locationCity.required(),
   locationNeighborhood: locationNeighborhood.required(),
-  companyId: companyId.required()
+  company: createCompanySchema.allow(null)
 });
 
 const getLocationSchema = Joi.object({
