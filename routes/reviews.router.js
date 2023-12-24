@@ -1,10 +1,10 @@
 const express = require('express');
-const VisitService = require('./../services/visit.service');
-const { createVisitSchema, getVisitSchema } = require('./../schemas/visit.schema');
-const { validatorMiddleware } = require('./../middlewares/validator.handler');
+const ReviewService = require('../services/review.service');
+const { createReviewSchema, getReviewSchema } = require('../schemas/review.schema');
+const { validatorMiddleware } = require('../middlewares/validator.handler');
 
 const router = express.Router();
-const service = new VisitService;
+const service = new ReviewService;
 
 router.get('/', async(req, res, next) => {
   try {
@@ -15,7 +15,7 @@ router.get('/', async(req, res, next) => {
 });
 
 router.post('/',
-  validatorMiddleware(createVisitSchema, 'body'),
+  validatorMiddleware(createReviewSchema, 'body'),
   async(req, res, next) => {
     try {
       const data = req.body;
@@ -26,12 +26,12 @@ router.post('/',
   }
 );
 
-router.get('/:visitId',
-  validatorMiddleware(getVisitSchema, 'params'),
+router.get('/:reviewId',
+  validatorMiddleware(getReviewSchema, 'params'),
   async(req, res, next) =>{
     try {
-      const { visitId } = req.params;
-      res.send(await service.findOne(visitId));
+      const { reviewId } = req.params;
+      res.send(await service.findOne(reviewId));
     } catch (error) {
       next(error);
     }

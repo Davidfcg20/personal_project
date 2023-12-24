@@ -5,20 +5,20 @@ const {COMMENTARY_TABLE} = require('./commentary.model');
 const {RATING_TABLE} = require('./rating.model');
 const {STATUS_TABLE} = require('./status.model');
 
-const VISIT_TABLE = 'visits';
+const REVIEW_TABLE = 'reviews';
 
-const VisitSchema = {
-  visitId: {
+const ReviewSchema = {
+  reviewId: {
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
-    field: 'visit_id'
+    field: 'review_id'
   },
-  visitGeneralOpinion: {
+  reviewGeneralOpinion: {
     type: DataTypes.STRING,
     allowNull: true,
-    field: 'visit_general_opinion'
+    field: 'review_general_opinion'
   },
   locationId:{
     type: DataTypes.INTEGER,
@@ -68,7 +68,7 @@ const VisitSchema = {
   },
 };
 
-class Visits extends Model {
+class Reviews extends Model {
   static associate(models){
     this.belongsTo(models.Location, {
       as: 'location',
@@ -90,11 +90,11 @@ class Visits extends Model {
   static config(sequelize){
     return{
       sequelize,
-      tableName: VISIT_TABLE,
-      modelName: 'Visit',
+      tableName: REVIEW_TABLE,
+      modelName: 'Review',
       timestamps: false,
     };
   }
 }
 
-module.exports = { VISIT_TABLE, VisitSchema, Visits };
+module.exports = { REVIEW_TABLE, ReviewSchema, Reviews };

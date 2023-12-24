@@ -20,8 +20,8 @@ const StatusSchema = {
 
 class Statuses extends Model {
   static associate(models){
-    this.hasMany(models.Visit, {
-      as: 'visit',
+    this.hasMany(models.Review, {
+      as: 'review',
       foreignKey: 'statusId'
     });
   }

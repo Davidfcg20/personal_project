@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 'use strict';
 
-const { VISIT_TABLE, VisitSchema } = require('./../models/visits.model');
+const { CONSUMPTION_TABLE, ConsumptionSchema } = require('./../models/consumption.model')
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -11,7 +11,8 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable(VISIT_TABLE, VisitSchema);
+    await queryInterface.addColumn(CONSUMPTION_TABLE, 'product_id', ConsumptionSchema.productId);
+    await queryInterface.addColumn(CONSUMPTION_TABLE, 'location_id', ConsumptionSchema.locationId);
   },
 
   async down (queryInterface, Sequelize) {
@@ -21,6 +22,7 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.dropTable(VISIT_TABLE);
+    await queryInterface.removeColumn(CONSUMPTION_TABLE, 'product_id');
+    await queryInterface.removeColumn(CONSUMPTION_TABLE, 'location_id');
   }
 };

@@ -1,30 +1,30 @@
 const Boom = require('@hapi/boom');
 const { sequelize } = require('../libs/sequelize');
 
-class VisitService {
+class ReviewService {
 
   constructor(){
 
   }
 
   async create(data){
-    const newVisit = await sequelize.models.Visit.create(data);
+    const newVisit = await sequelize.models.Review.create(data);
     return newVisit;
   }
 
-  async findOne(visitId){
-    const visit = await sequelize.models.Visit.findByPk(visitId, {
+  async findOne(reviewId){
+    const visit = await sequelize.models.Review.findByPk(reviewId, {
       include: ['location', 'commentary', 'rating', 'status']
     });
     if(!visit){
-      throw Boom.notFound('visit not found');
+      throw Boom.notFound('review not found');
     } else {
       return visit;
     }
   }
 
   async findAll(){
-    const rta = await sequelize.models.Visit.findAll();
+    const rta = await sequelize.models.Review.findAll();
     return rta;
   }
 
@@ -38,4 +38,4 @@ class VisitService {
 
 }
 
-module.exports = VisitService;
+module.exports = ReviewService;

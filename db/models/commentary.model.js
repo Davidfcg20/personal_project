@@ -20,17 +20,12 @@ const CommentarySchema = {
     allowNull: true,
     field: 'commentary_has_vegan_snack'
   },
-  commentaryGeneralOpinion:{
-    type: DataTypes.STRING,
-    allowNull: true,
-    field: 'general_opinion'
-  },
 };
 
 class Commentaries extends Model {
   static associate(models){
-    this.hasOne(models.Visit, {
-      as: 'visit',
+    this.hasOne(models.Review, {
+      as: 'review',
       foreignKey: 'commentaryId'
     });
   }
