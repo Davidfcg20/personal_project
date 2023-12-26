@@ -40,8 +40,11 @@ class CompanyService {
 
   async update(companyId, changes){
     const company = await  this.findOne(companyId);
+    const profile = await  sequelize.models.Profile.findByPk(company.profileId);
+    await profile.update(changes.profile);
     const rta = await company.update(changes);
     return rta;
+
   }
 
   async delete(companyId){

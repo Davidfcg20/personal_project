@@ -57,10 +57,9 @@ module.exports = {
     });
     await queryInterface.createTable(LOCATION_TABLE, {
       locationId:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true,
         field: 'location_id'
       },
       locationCountry:{

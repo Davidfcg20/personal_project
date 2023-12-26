@@ -1,27 +1,32 @@
 const Joi = require('joi');
 
 const { locationId } = require('./location.schema');
-//const {  } = require('./rating.schema');
-//const {  } = require('./status.schema');
-//const {  } = require('./commentary.schema');
+const { ratingId } = require('./rating.schema');
+const { statusId } = require('./status.schema');
+const { commentaryId } = require('./commentary.schema');
 
 const reviewId = Joi.number().integer();
 const reviewGeneralOpinion = Joi.string();
-const ratingId = Joi.number().integer().positive();
-const statusId = Joi.number().integer();
-const commentaryId = Joi.number().integer();
 
 const createReviewSchema = Joi.object({
-  //reviewId: reviewId.required(),
+  reviewId: reviewId.required(),
   reviewGeneralOpinion: reviewGeneralOpinion.required(),
   locationId: locationId.required(),
-  commentaryId: commentaryId.required(),
   ratingId: ratingId.required(),
-  statusId: statusId.required()
+  statusId: statusId.required(),
+  commentaryId: commentaryId.required()
 });
 
 const getReviewSchema = Joi.object({
   reviewId: reviewId.required()
 });
 
-module.exports = { reviewId, createReviewSchema, getReviewSchema };
+const updateReviewSchema = Joi.object({
+  reviewGeneralOpinion: reviewGeneralOpinion.required(),
+  locationId: locationId.required(),
+  ratingId: ratingId.required(),
+  statusId: statusId.required(),
+  commentaryId: commentaryId.required()
+});
+
+module.exports = { reviewId, createReviewSchema, getReviewSchema, updateReviewSchema };

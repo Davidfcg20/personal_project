@@ -14,24 +14,24 @@ router.get('/', async(req, res, next) => {
   }
 });
 
-router.post('/',
-  validatorMiddleware(createCompanySchema, 'body'),
-  async(req, res, next) => {
-    try {
-      const data = req.body;
-      res.send(await service.create(data));
-    } catch (error) {
-      next(error);
-    }
-  }
-);
-
 router.get('/:companyId',
   validatorMiddleware(getCompanySchema, 'params'),
   async(req, res, next) =>{
     try {
       const { companyId } = req.params;
       res.send(await service.findOne(companyId));
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.post('/',
+  validatorMiddleware(createCompanySchema, 'body'),
+  async(req, res, next) => {
+    try {
+      const data = req.body;
+      res.send(await service.create(data));
     } catch (error) {
       next(error);
     }
@@ -63,6 +63,5 @@ router.delete('/:companyId',
     }
   }
 );
-
 
 module.exports = router;

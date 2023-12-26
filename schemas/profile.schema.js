@@ -8,8 +8,13 @@ const createProfileSchema = Joi.object({
   profileUrl: profileUrl.required()
 });
 
+
+const getProfileSchema = Joi.object({
+  profileId: profileId.required()
+});
+
 const updateProfileSchema = Joi.object({
   profileUrl: profileUrl.required()
 });
 
-module.exports = { createProfileSchema, updateProfileSchema };
+module.exports = { profileId, createProfileSchema, getProfileSchema, updateProfileSchema };

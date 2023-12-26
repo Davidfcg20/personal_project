@@ -1,14 +1,15 @@
 const Joi = require('joi');
 
-const {createProfileSchema, updateProfileSchema }  = require('./profile.schema');
+const { profileId, createProfileSchema, updateProfileSchema }  = require('./profile.schema');
 
 const companyId = Joi.number().integer();
 const companyName = Joi.string();
 
 const createCompanySchema = Joi.object({
-  companyId: companyId.allow(null),
+  companyId: companyId.optional(),
   companyName: companyName.required(),
-  profile: createProfileSchema.allow(null)
+  profileId: profileId.optional(),
+  profile: createProfileSchema.optional()
 });
 
 const getCompanySchema = Joi.object({
@@ -17,7 +18,8 @@ const getCompanySchema = Joi.object({
 
 const updateCompanySchema = Joi.object({
   companyName: companyName.required(),
-  profile: updateProfileSchema.allow(null)
+  profileId: profileId.optional(),
+  profile: updateProfileSchema.optional()
 });
 
 module.exports = { companyId, createCompanySchema, getCompanySchema, updateCompanySchema };

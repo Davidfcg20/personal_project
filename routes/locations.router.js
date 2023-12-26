@@ -1,6 +1,6 @@
 const express = require('express');
 const LocationService = require('./../services/location.service');
-const { createLocationSchema, getLocationSchema} = require('./../schemas/location.schema');
+const { createLocationSchema, getLocationSchema, updateLocationSchema} = require('./../schemas/location.schema');
 const { validatorMiddleware } = require('./../middlewares/validator.handler');
 
 const router = express.Router();
@@ -14,6 +14,18 @@ router.get('/', async(req, res, next) => {
   }
 });
 
+router.get('/:locationId',
+  validatorMiddleware(getLocationSchema, 'params'),
+  async(req, res, next) =>{
+    try {
+      const { locationId } = req.params;
+      res.send(await service.findOne(locationId));
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 router.post('/',
   validatorMiddleware(createLocationSchema, 'body'),
   async(req, res, next) => {
@@ -26,13 +38,26 @@ router.post('/',
   }
 );
 
+router.patch('/:locationId',
+  validatorMiddleware(getLocationSchema, 'params'),
+  validatorMiddleware(updateLocationSchema, 'body'),
+  async(req, res, next) =>{
+    try {
+      const { locationId } = req.params;
+      const changes = req.body;
+      res.send(await service.update(locationId, changes));
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
-router.get('/:locationId',
+router.delete('/:locationId',
   validatorMiddleware(getLocationSchema, 'params'),
   async(req, res, next) =>{
     try {
       const { locationId } = req.params;
-      res.send(await service.findOne(locationId));
+      res.send(await service.delete(locationId));
     } catch (error) {
       next(error);
     }

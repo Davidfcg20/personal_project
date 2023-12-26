@@ -7,12 +7,7 @@ class LocationService {
   }
 
   async create(data){
-    const newLocation = await sequelize.models.Location.create(data, {
-      include: [{
-        association: 'company',
-        include: ['profile']
-      }]
-    });
+    const newLocation = await sequelize.models.Location.create(data);
     return newLocation;
   }
 
@@ -21,7 +16,7 @@ class LocationService {
       include: [{
         association: 'company',
         include: ['profile']
-      },'visit']
+      },'review']
     });
     if(!location){
       throw Boom.notFound('location not found');
@@ -35,8 +30,10 @@ class LocationService {
     return rta;
   }
 
-  async update(){
-
+  async update(locationId, changes){
+    const location = await this.findOne(locationId);
+    const rta = await location.update(changes);
+    return rta;
   }
 
   async delete(){

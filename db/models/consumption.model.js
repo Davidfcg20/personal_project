@@ -35,7 +35,7 @@ const ConsumptionSchema = {
     field: 'product_id'
   },
   locationId:{
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
     references: {
       model: LOCATION_TABLE,
