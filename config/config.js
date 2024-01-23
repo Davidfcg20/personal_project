@@ -9,7 +9,8 @@ const config = {
   dbPort: process.env.DB_PORT,
   dbHost: process.env.DB_HOST,
   pgadmEmail: process.env.PGADMIN_DEFAULT_EMAIL,
-  pgadmPassword: process.env.PGADMIN_DEFAULT_PASSWORD
+  pgadmPassword: process.env.PGADMIN_DEFAULT_PASSWORD,
+  apiKey: process.env.API_KEY
 };
 
 module.exports = { config };

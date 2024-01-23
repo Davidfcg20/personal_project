@@ -7,6 +7,7 @@ const { ProfileSchema, Profiles } = require('./../models/profile.model');
 const { RatingSchema, Ratings } = require('./rating.model');
 const { ReviewSchema, Reviews } = require('./../models/review.model');
 const { StatusSchema, Statuses } = require('./../models/status.model');
+const { UserSchema, Users } = require('./../models/user.model');
 
 function setupModels(sequelize){
   Profiles.init(ProfileSchema, Profiles.config(sequelize));
@@ -18,6 +19,7 @@ function setupModels(sequelize){
   Reviews.init(ReviewSchema, Reviews.config(sequelize));
   Products.init(ProductSchema, Products.config(sequelize));
   Consumptions.init(ConsumptionSchema, Consumptions.config(sequelize));
+  Users.init(UserSchema, Users.config(sequelize));
 
   //Associates
   Companies.associate(sequelize.models);

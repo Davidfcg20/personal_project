@@ -21,7 +21,7 @@ const ReviewSchema = {
     field: 'review_general_opinion'
   },
   locationId:{
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: false,
     references: {
       model: LOCATION_TABLE,

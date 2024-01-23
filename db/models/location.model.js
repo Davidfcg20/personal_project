@@ -5,10 +5,15 @@ const LOCATION_TABLE = 'locations';
 
 const LocationSchema = {
   locationId:{
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    field: 'location_id'
+  },
+  locationAddress:{
     type: DataTypes.STRING,
     allowNull: false,
-    primaryKey: true,
-    field: 'location_id'
+    field: 'location_address'
   },
   locationCountry:{
     type: DataTypes.STRING,

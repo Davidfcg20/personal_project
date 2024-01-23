@@ -11,6 +11,7 @@ const { PROFILE_TABLE } = require('./../models/profile.model');
 const { RATING_TABLE } = require('./../models/rating.model');
 const { REVIEW_TABLE } = require('./../models/review.model');
 const { STATUS_TABLE } = require('./../models/status.model');
+const { USER_TABLE } = require('./../models/user.model');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -57,10 +58,15 @@ module.exports = {
     });
     await queryInterface.createTable(LOCATION_TABLE, {
       locationId:{
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        field: 'location_id'
+      },
+      locationAddress:{
         type: DataTypes.STRING,
         allowNull: false,
-        primaryKey: true,
-        field: 'location_id'
+        field: 'location_address'
       },
       locationCountry:{
         type: DataTypes.STRING,
@@ -176,7 +182,46 @@ module.exports = {
         field: 'review_general_opinion'
       }
     });
-
+    await queryInterface.createTable(USER_TABLE, {
+      userId:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        field: 'user_id'
+      },
+      userLastName:{
+        type: DataTypes.STRING,
+        allowNull: true,
+        field: 'user_last_name'
+      },
+      userFirstName:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        field: 'user_first_name'
+      },
+      userAge:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: 'user_age'
+      },
+      userEmail:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        field: 'user_email'
+      },
+      userPassword:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        field: 'user_password'
+      },
+      userRole:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'consumer',
+        field: 'user_role'
+      }
+    });
   },
 
   async down (queryInterface) {
