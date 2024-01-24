@@ -18,6 +18,13 @@ class UserService {
     return newUser;
   }
 
+  async findByEmail(email){
+    const rta = await sequelize.models.User.findOne({
+      where: { userEmail: email }
+    });
+    return rta;
+  }
+
   async findOne(userId){
     const user = await sequelize.models.User.findByPk(userId);
     if(!user){
