@@ -10,7 +10,8 @@ const config = {
   dbHost: process.env.DB_HOST,
   pgadmEmail: process.env.PGADMIN_DEFAULT_EMAIL,
   pgadmPassword: process.env.PGADMIN_DEFAULT_PASSWORD,
-  apiKey: process.env.API_KEY
+  apiKey: process.env.API_KEY,
+  jwtSecret: process.env.JWT_SECRET
 };
 
 module.exports = { config };

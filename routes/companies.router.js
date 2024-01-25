@@ -2,6 +2,7 @@ const express = require ('express');
 const CompanyService = require('./../services/company.service');
 const { createCompanySchema, getCompanySchema, updateCompanySchema } = require('./../schemas/company.schema');
 const { validatorMiddleware } = require('./../middlewares/validator.handler');
+const passport = require('passport');
 
 const router = express.Router();
 const service = new CompanyService;
@@ -27,6 +28,7 @@ router.get('/:companyId',
 );
 
 router.post('/',
+  passport.authenticate('jwt', { session: false }),
   validatorMiddleware(createCompanySchema, 'body'),
   async(req, res, next) => {
     try {
