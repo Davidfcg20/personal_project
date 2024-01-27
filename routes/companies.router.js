@@ -3,6 +3,7 @@ const CompanyService = require('./../services/company.service');
 const { createCompanySchema, getCompanySchema, updateCompanySchema } = require('./../schemas/company.schema');
 const { validatorMiddleware } = require('./../middlewares/validator.handler');
 const passport = require('passport');
+const { checkApiKey, checkRoles } = require('./../middlewares/auth.handler');
 
 const router = express.Router();
 const service = new CompanyService;
@@ -16,7 +17,10 @@ router.get('/', async(req, res, next) => {
 });
 
 router.get('/:companyId',
+  checkApiKey,
   validatorMiddleware(getCompanySchema, 'params'),
+  passport.authenticate('jwt', { session: false }),
+  checkRoles(['consumer']),
   async(req, res, next) =>{
     try {
       const { companyId } = req.params;
@@ -29,6 +33,7 @@ router.get('/:companyId',
 
 router.post('/',
   passport.authenticate('jwt', { session: false }),
+
   validatorMiddleware(createCompanySchema, 'body'),
   async(req, res, next) => {
     try {
