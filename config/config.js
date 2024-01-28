@@ -11,7 +11,10 @@ const config = {
   pgadmEmail: process.env.PGADMIN_DEFAULT_EMAIL,
   pgadmPassword: process.env.PGADMIN_DEFAULT_PASSWORD,
   apiKey: process.env.API_KEY,
-  jwtSecret: process.env.JWT_SECRET
+  jwtSecret: process.env.JWT_SECRET,
+  jwtSecretRecovery: process.env.JWT_SECRET_RECOVERY,
+  smtpEmail: process.env.SMTP_EMAIL,
+  smtpPassword: process.env.SMTP_PASSWORD
 };
 
 module.exports = { config };
